@@ -12,7 +12,6 @@
 
 <script setup>
 import TransactionItem from './TransactionItem.vue';
-import {defineEmits} from 'vue';
 
 const {list} = defineProps({
   list: {

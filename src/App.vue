@@ -30,9 +30,8 @@ const transactions = ref([
 // Event callbacks
 
 const deleteTransaction = (id) => {
-  console.log('clicked');
-  console.log(id);
-  transactions.value = transactions.value.filter(item => item.id !== id);
+  transactions.value = transactions.value
+    .filter(item => item.id !== id);
 }
 
 // Computed Values

@@ -1,10 +1,10 @@
 <template>
-  <li :class="amountClass">
+  <li :class="item?.amount > 0? 'plus' : 'minus'">
     {{item.text}}
     <span>$ {{item.amount}}</span>
     <button
       class="delete-btn"
-      @click="handleClickEvent(item.id)"
+      @click="handleClickEvent"
     >
       x
     </button>
@@ -12,8 +12,6 @@
 </template>
 
 <script setup>
-import {computed, defineEmits} from 'vue';
-
 const emit = defineEmits(['delete'])
 
 const {item} = defineProps({
@@ -22,17 +20,8 @@ const {item} = defineProps({
     required: true
   }
 })
-
-const amountClass = computed(() => {
-  if(item.amount> 0) {
-    return "plus"
-  } else {
-    return "minus"
-  }
-})
-
-const handleClickEvent = (id) => {
-  emit('delete', id);
+const handleClickEvent = () => {
+  emit('delete', item?.id);
 }
 
 </script>
