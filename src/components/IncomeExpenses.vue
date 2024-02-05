@@ -2,17 +2,18 @@
   <div class="inc-exp-container">
     <div>
       <h4>Income</h4>
-      <p id="money-plus" class="money plus">+$ {{income}}</p>
+      <p id="money-plus" class="money plus">+$ {{ roundedIncome }}</p>
     </div>
     <div>
       <h4>Expense</h4>
-      <p id="money-minus" class="money minus">-$ {{expenses}}</p>
+      <p id="money-minus" class="money minus">-$ {{ roundedExpenses }}</p>
     </div>
   </div>
 </template>
 
 <script setup>
-const {income, expenses} = defineProps({
+import { computed } from 'vue';
+const { income, expenses } = defineProps({
   expenses: {
     type: Number,
     required: true
@@ -21,5 +22,8 @@ const {income, expenses} = defineProps({
     type: Number,
     required: true
   }
-})
+});
+
+const roundedExpenses = computed(() => Math.ceil(expenses)); 
+const roundedIncome = computed(() => Math.ceil(income)); 
 </script>
