@@ -2,28 +2,17 @@
   <h3>History</h3>
   <ul id="list" class="list">
     <TransactionItem
-      v-for="item in list"
+      v-for="item in store.transactions"
       :id="item.id"
       :item="item"
-      @delete="handleEmmit"
     />
   </ul>
 </template>
 
 <script setup>
 import TransactionItem from './TransactionItem.vue';
+import {useTransactionsStore} from '../stores/transactionsStore'; 
 
-const {list} = defineProps({
-  list: {
-    type: Array,
-    required: true
-  },
-});
-
-const emit = defineEmits(['delete']);
-
-const handleEmmit = (payload) => {
-  emit('delete', payload);
-}
+const store = useTransactionsStore(); 
 
 </script>

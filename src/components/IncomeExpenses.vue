@@ -2,28 +2,17 @@
   <div class="inc-exp-container">
     <div>
       <h4>Income</h4>
-      <p id="money-plus" class="money plus">+$ {{ roundedIncome }}</p>
+      <p id="money-plus" class="money plus">+$ {{ store.roundedIncome }}</p>
     </div>
     <div>
       <h4>Expense</h4>
-      <p id="money-minus" class="money minus">-$ {{ roundedExpenses }}</p>
+      <p id="money-minus" class="money minus">-$ {{ store.roundedExpenses }}</p>
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue';
-const { income, expenses } = defineProps({
-  expenses: {
-    type: Number,
-    required: true
-  },
-  income: {
-    type: Number,
-    required: true
-  }
-});
+import {useTransactionsStore} from '../stores/transactionsStore'; 
 
-const roundedExpenses = computed(() => Math.ceil(expenses)); 
-const roundedIncome = computed(() => Math.ceil(income)); 
+const store = useTransactionsStore(); 
 </script>

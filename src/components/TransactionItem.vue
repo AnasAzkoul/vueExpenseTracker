@@ -1,27 +1,20 @@
 <template>
-  <li :class="item?.amount > 0? 'plus' : 'minus'">
-    {{item.text}}
-    <span>$ {{item.amount}}</span>
-    <button
-      class="delete-btn"
-      @click="handleClickEvent"
-    >
-      x
-    </button>
+  <li :class="item?.amount > 0 ? 'plus' : 'minus'">
+    {{ item.text }}
+    <span>$ {{ item.amount }}</span>
+    <button class="delete-btn" @click="store.deleteTransaction(item.id)">x</button>
   </li>
 </template>
 
 <script setup>
-const emit = defineEmits(['delete'])
+import { useTransactionsStore } from '../stores/transactionsStore';
 
-const {item} = defineProps({
+const store = useTransactionsStore();
+
+const { item } = defineProps({
   item: {
     type: Object,
     required: true
   }
-})
-const handleClickEvent = () => {
-  emit('delete', item?.id);
-}
-
+});
 </script>

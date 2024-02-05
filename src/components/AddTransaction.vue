@@ -18,14 +18,16 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useTransactionsStore } from '../stores/transactionsStore';
 
 const transactionName = ref(null);
 const transactionAmount = ref(null);
 
-const emits = defineEmits(['add-transaction']);
+const store = useTransactionsStore();
 
 const handleFormSubmit = () => {
-  emits('add-transaction', {
+  store.addTransaction({
+    id: Math.floor(Math.random() * 10000),
     text: transactionName.value,
     amount: transactionAmount.value
   });
