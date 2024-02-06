@@ -1,10 +1,10 @@
 <template>
   <h4>Your Balance</h4>
-  <h1 id="balance">$ {{store.balance}}</h1>
+  <h1 id="balance">$ {{ balance }}</h1>
 </template>
 
 <script setup>
-import {useTransactionsStore} from '../stores/transactionsStore'; 
-const store = useTransactionsStore(); 
-</script>
+import {useDestructureStore} from '../composables/useDestructureStore'; 
 
+const {balance} = useDestructureStore(); 
+</script>

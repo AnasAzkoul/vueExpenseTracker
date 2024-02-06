@@ -2,15 +2,10 @@ import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 
 export const useTransactionsStore = defineStore('transactions', () => {
-  const transactions = ref([
-    { id: 1, text: 'Flower', amount: -19.99 },
-    { id: 2, text: 'Salary', amount: 299.97 },
-    { id: 3, text: 'Book', amount: -10 },
-    { id: 4, text: 'Camera', amount: 150 }
-  ]);
+  const transactions = ref(JSON.parse(localStorage.getItem('transactions')));
 
   const balance = computed(() => {
-    return transactions.value.reduce((acc, currentItem) => acc + currentItem.amount, 0);
+    return Math.ceil(transactions.value.reduce((acc, currentItem) => acc + currentItem.amount, 0));
   });
 
   const roundedIncome = computed(() => {

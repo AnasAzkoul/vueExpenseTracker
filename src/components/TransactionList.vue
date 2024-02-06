@@ -2,7 +2,7 @@
   <h3>History</h3>
   <ul id="list" class="list">
     <TransactionItem
-      v-for="item in store.transactions"
+      v-for="item in transactions"
       :id="item.id"
       :item="item"
     />
@@ -11,8 +11,7 @@
 
 <script setup>
 import TransactionItem from './TransactionItem.vue';
-import {useTransactionsStore} from '../stores/transactionsStore'; 
+import {useDestructureStore} from '../composables/useDestructureStore'; 
 
-const store = useTransactionsStore(); 
-
+const {transactions} = useDestructureStore(); 
 </script>
