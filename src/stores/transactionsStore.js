@@ -1,5 +1,8 @@
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
+import { useToast } from 'vue-toastification';
+
+const toast = useToast();
 
 export const useTransactionsStore = defineStore('transactions', () => {
   const transactions = ref(JSON.parse(localStorage.getItem('transactions')));
@@ -34,10 +37,12 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   const deleteTransaction = (id) => {
     transactions.value = transactions.value.filter((item) => item.id !== id);
+    toast.warning('Deleted');
   };
 
   const addTransaction = (data) => {
     transactions.value = [data, ...transactions.value];
+    toast.success('Added');
   };
 
   return {
